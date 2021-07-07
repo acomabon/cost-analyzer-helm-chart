@@ -1,3 +1,23 @@
+# OpenShift quick installation:
+
+`oc new-project kubecost`
+`oc adm policy add-scc-to-group anyuid system:authenticated`
+`oc adm policy add-scc-to-user anyuid -z kubecost-cost-analyzer -n kubecost`
+`oc adm policy add-scc-to-user anyuid -z default -n kubecost`
+`oc adm policy add-scc-to-user anyuid -z kubecost-grafana -n kubecost`
+
+Clone the repo.
+
+`oc apply -f cost-analyzer-helm-chart/kubecost.yaml --namespace kubecost`
+
+Create a route for external access.
+
+`oc expose service kubecost-cost-analyzer --port=9090`
+
+Figure out the route.
+
+`oc get routes -n kubecost`
+
 # Kubecost helm chart
 Helm chart for the Kubecost project, which is created to monitor and manage Kubernetes resource spend. Please contact team@kubecost.com or visit [kubecost.com](http://kubecost.com) for more info.
 
