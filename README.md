@@ -1,9 +1,17 @@
 # OpenShift quick installation:
 
+Create the namespace.
+
 `oc new-project kubecost`
+
+Create the service account.
+
 `oc adm policy add-scc-to-group anyuid system:authenticated`
+
 `oc adm policy add-scc-to-user anyuid -z kubecost-cost-analyzer -n kubecost`
+
 `oc adm policy add-scc-to-user anyuid -z default -n kubecost`
+
 `oc adm policy add-scc-to-user anyuid -z kubecost-grafana -n kubecost`
 
 Clone the repo.
